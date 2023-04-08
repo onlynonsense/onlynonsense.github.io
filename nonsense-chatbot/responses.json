@@ -1,0 +1,70 @@
+[
+  {
+    "keywords": ["hi", "hello", "hey"],
+    "response": "Hello there!"
+  },
+  {
+    "keywords": ["how are you", "how's it going"],
+    "response": "I'm doing well, thank you for asking!"
+  },
+  {
+    "keywords": ["what is your name", "who are you"],
+    "response": "My name is Chatbot!"
+  },
+  {
+    "keywords": ["what time is it", "what's the time"],
+    "response": "It's currently {{time}}."
+  },
+  {
+    "keywords": ["thank you", "thanks", "appreciate it"],
+    "response": "You're welcome!"
+  },
+  {
+    "keywords": ["where are you from", "where do you live"],
+    "response": "I don't live anywhere, I exist solely in the digital world!"
+  },
+  {
+    "keywords": ["what do you do", "what is your purpose"],
+    "response": "I'm here to answer your questions and provide assistance!"
+  },
+  {
+    "keywords": ["how old are you", "when were you created"],
+    "response": "I was just created recently, so I'm very young!"
+  },
+  {
+    "keywords": ["what can you do", "what are your capabilities"],
+    "response": "I can provide information, answer questions, and even tell jokes!"
+  },
+  {
+    "keywords": ["tell me a joke", "make me laugh"],
+    "response": "Why did the tomato turn red? Because it saw the salad dressing!"
+  },
+  {
+    "keywords": ["what is the meaning of life"],
+    "response": "That's a tough question. The meaning of life is different for everyone!"
+  },
+  {
+    "keywords": ["how do I use this website", "what is the purpose of this website"],
+    "response": "This website is designed to provide information and resources related to {{topic}}. You can use the search bar or browse the menu to find what you're looking for!"
+  },
+  {
+    "keywords": ["how do I contact customer support", "what is the customer support phone number"],
+    "response": "You can contact customer support by calling {{phone}} or emailing {{email}}. Our representatives are available 24/7 to assist you!"
+  },
+  {
+    "keywords": ["what is the weather like today", "will it rain today"],
+    "response": "I'm sorry, I don't have access to real-time weather information. You can check a local weather website or app for up-to-date information!"
+  },
+  {
+    "keywords": ["what is your favorite movie", "what movies do you like"],
+    "response": "As an AI chatbot, I don't have the ability to like or dislike things like humans do. However, I can provide recommendations based on your preferences!"
+  },
+  {
+    "keywords": ["how do I reset my password", "what is the password reset process"],
+    "response": "To reset your password, please follow the instructions provided in the password reset email that was sent to your registered email address."
+  },
+  {
+    "keywords": ["what is the meaning of a word", "what does a word mean"],
+    "response": "The meaning of the word {{word}} is {{definition}}."
+  }
+ ]
