@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Terminal Website</title>
+	<title>Nonsense-Chatbot</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -50,40 +50,31 @@ function displayOutput(output) {
 	terminalBody.appendChild(outputElement);
 }
 
-// Load the JSON file containing the chatbot responses
 const responseFile = 'responses.json';
 
-// Define a function to load the JSON file
 async function loadResponses() {
   const response = await fetch(responseFile);
   const data = await response.json();
   return data;
 }
 
-// Initialize the chatbot responses as an empty object
 let chatbotResponses = {};
 
-// Call the loadResponses() function to load the JSON file
 loadResponses().then(data => {
   chatbotResponses = data;
 });
 
-// Define the handleInput() function
 function handleInput(input) {
   const inputText = input.trim().toLowerCase();
   let response = '';
 
-  // Loop through the chatbotResponses object
   for (const item of chatbotResponses) {
-    // Check if any of the keywords match the input text
     if (item.keywords.some(keyword => inputText.includes(keyword))) {
-      // If there's a match, set the response to the corresponding value
       response = item.response;
       break;
     }
   }
 
-  // If there's no match, set the response to the default message
   if (!response) {
     response = chatbotResponses.default;
   }
