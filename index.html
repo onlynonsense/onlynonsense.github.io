@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Terminal Website</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<div id="terminal">
+		<div class="terminal-header">
+			<span class="terminal-title">Terminal</span>
+			<span class="terminal-buttons">
+				<button class="terminal-button"></button>
+				<button class="terminal-button"></button>
+				<button class="terminal-button"></button>
+			</span>
+		</div>
+<div class="terminal-body">
+	<form id="terminal-form">
+		<div class="terminal-prompt">$</div>
+		<input class="terminal-input" type="text" autocomplete="off" autofocus>
+	</form>
+</div>
+
+	</div>
+</body>
+<script>
+const terminalForm = document.getElementById('terminal-form');
+const terminalInput = document.querySelector('.terminal-input');
+
+terminalForm.addEventListener('submit', function(e) {
+	e.preventDefault();
+	const inputText = terminalInput.value.trim();
+	const outputText = handleInput(inputText);
+	displayOutput('$ ' + inputText + '\n' + outputText);
+	terminalInput.value = '';
+});
+
+function handleInput(input) {
+	const inputText = input.trim().toLowerCase();
+	const response = chatbotResponses[inputText] || chatbotResponses['default'];
+	return response;
+}
+
+function displayOutput(output) {
+	const outputElement = document.createElement('div');
+	outputElement.classList.add('terminal-output');
+	outputElement.innerHTML = output;
+	const terminalBody = document.querySelector('.terminal-body');
+	terminalBody.appendChild(outputElement);
+}
+
+// Load the JSON file containing the chatbot responses
+const responseFile = 'responses.json';
+
+// Define a function to load the JSON file
+async function loadResponses() {
+  const response = await fetch(responseFile);
+  const data = await response.json();
+  return data;
+}
+
+// Initialize the chatbot responses as an empty object
+let chatbotResponses = {};
+
+// Call the loadResponses() function to load the JSON file
+loadResponses().then(data => {
+  chatbotResponses = data;
+});
+
+// Define the handleInput() function
+function handleInput(input) {
+  const inputText = input.trim().toLowerCase();
+  let response = '';
+
+  // Loop through the chatbotResponses object
+  for (const item of chatbotResponses) {
+    // Check if any of the keywords match the input text
+    if (item.keywords.some(keyword => inputText.includes(keyword))) {
+      // If there's a match, set the response to the corresponding value
+      response = item.response;
+      break;
+    }
+  }
+
+  // If there's no match, set the response to the default message
+  if (!response) {
+    response = chatbotResponses.default;
+  }
+
+  return response;
+}
+
+</script>
+<style>
+.terminal-output {
+	margin-top: 10px;
+	white-space: pre-wrap;
+}
+.terminal-prompt {
+  display: inline-block;
+  padding-right: 10px;
+}
+
+.terminal-input {
+  display: inline-block;
+  width: 80%;
+  max-width: 1000px;
+  background: none;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+}
+
+
+
+body {
+	background-color: #1d1f21;
+	color: #c5c8c6;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 16px;
+}
+
+#terminal {
+	border: 1px solid #373b41;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #000000;
+	margin: 50px auto;
+	width: 80%;
+}
+
+.terminal-header {
+	background-color: #373b41;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	display: flex;
+	justify-content: space-between;
+	padding: 5px 10px;
+}
+
+.terminal-title {
+	color: #c5c8c6;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.terminal-buttons {
+	display: flex;
+}
+
+.terminal-button {
+	background-color: #c5c8c6;
+	border: none;
+	border-radius: 50%;
+	height: 12px;
+	margin-left: 5px;
+	width: 12px;
+}
+
+.terminal-body {
+	padding: 10px;
+}
+
+.terminal-prompt {
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.terminal-input {
+	display: inline-block;
+}
+</style>
+</html>
